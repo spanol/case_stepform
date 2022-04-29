@@ -1,12 +1,15 @@
-import './App.css';
-import Router from './router';
+import "./App.css";
+import Router from "./router";
+import ContextProvider from "./context/index";
 // import Form from './components/Form';
 
 function App() {
   return (
-    <div className="App">
-      <Router/>
-    </div>
+    <ContextProvider>
+      <div className="App">
+        <Router />
+      </div>
+    </ContextProvider>
   );
 }
 
