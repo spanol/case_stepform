@@ -1,18 +1,38 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {AiOutlineMenu, AiOutlineUserAdd, AiOutlineUser, AiOutlineClose} from 'react-icons/ai'
+import {
+  AiOutlineMenu,
+  AiOutlineUserAdd,
+  AiOutlineUser,
+  AiOutlineClose,
+} from "react-icons/ai";
 export default function SideBar() {
   const [active, setActive] = useState(false);
+
+  const toggleActive = () => {
+    setActive(!active);
+  };
   return active ? (
-    <div className="sidebar">
-      <Link to="/create_client">Cadastrar cliente <AiOutlineUserAdd/></Link>
+    <div className="flex sidebar">
+      <AiOutlineClose className="close-icon" onClick={toggleActive} />
+      <button>
+      <Link to="/">
+        Cadastrar cliente <AiOutlineUserAdd />
+      </Link>
+      </button>
+
       <br />
-      <Link to="/clients">Clientes <AiOutlineUser/></Link>
-      <AiOutlineClose onClick={() => setActive(!active)}/>
+
+      <button>
+      <Link to="/clients">
+        Clientes <AiOutlineUser />
+      </Link>
+      </button>
+      
     </div>
   ) : (
-    <div className="sidebar closed">
-      <AiOutlineMenu onClick={()=>setActive(!active)}>desativado</AiOutlineMenu>
+    <div className="sidebar closed" onClick={toggleActive}>
+      <AiOutlineMenu className="menu-icon"></AiOutlineMenu>
     </div>
   );
 }
