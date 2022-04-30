@@ -1,16 +1,16 @@
-import React from "react";
 import { useForm, useStep } from "../../context/index";
-import Buttons from "../Buttons";
+import { cepMask } from "../../utils/cepMask";
+import { getCep } from "../../utils/getCep";
 
 export default function Step2() {
   const { formData, setFormData } = useForm();
   const { cep, address1, address2 } = formData;
   const { step, setStep } = useStep();
-  // console.log(formData)
 
   const nextStep = (e) => {
     e.preventDefault();
-    if(!cep || !address1 || !address2) return alert("Preencha todos os campos");
+    if (!cep || !address1 || !address2)
+      return alert("Preencha todos os campos");
     setStep((prevState) => prevState + 1);
     console.log("step", step);
   };
@@ -21,8 +21,18 @@ export default function Step2() {
     console.log("step", step);
   };
 
+  const getCepOnFocus = async () => {
+    if (cep.length !== 8) return;
+    const response = await getCep(cep);
+    if (response) {
+      setFormData({ ...formData, address1: response.logradouro });
+    } else{
+      alert("CEP não encontrado");
+    }
+  };
+
   return (
-    <div className="form-container">
+    <>
       <form action="#" className="form" id="form1">
         <h2 className="form__title">Step {step}</h2>
         <label htmlFor="Cep">Cep</label>
@@ -30,22 +40,24 @@ export default function Step2() {
           type="text"
           placeholder="Cep"
           className="input"
-          value={cep}
+          maxLength="10"
+          value={cepMask(cep)}
           onChange={(e) => setFormData({ ...formData, cep: e.target.value })}
         />
 
-        <label htmlFor="Address 1">Address 1</label>
+        <label htmlFor="Address 1">Endereço 1</label>
         <input
           type="text"
           placeholder="Addres 1"
           className="input"
           value={address1}
+          onFocus={getCepOnFocus}
           onChange={(e) =>
             setFormData({ ...formData, address1: e.target.value })
           }
         />
 
-        <label htmlFor="Address 2">Address 2</label>
+        <label htmlFor="Address 2">Endereço 2</label>
         <input
           type="text"
           placeholder="Addres 2"
@@ -56,10 +68,9 @@ export default function Step2() {
           }
         />
         <br />
-        <button onClick={prevStep}>Prev</button>
-        <button onClick={nextStep}>Next</button>
-        {/* <Buttons /> */}
+        <button onClick={prevStep}>Anterior</button>
+        <button onClick={nextStep}>Próximo</button>
       </form>
-    </div>
+    </>
   );
 }

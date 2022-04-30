@@ -1,28 +1,34 @@
 import { useForm, useStep } from "../../context/index";
-import Buttons from "../Buttons";
+import { phoneMask } from "../../utils/phoneMask";
 
 export default function Step1() {
   const { step, setStep } = useStep();
   const { formData, setFormData } = useForm();
-  const {  name, secondName, email, telephone } = formData;
-  // console.log(formData)
+  const { name, secondName, email, telephone } = formData;
+
   const nextStep = (e) => {
     e.preventDefault();
-    if (!name || !secondName || !email || !telephone) return alert("preencha todos os campos");
+    if (!name || !secondName || !email || !telephone)
+      return alert("preencha todos os campos");
     setStep((prevState) => prevState + 1);
     console.log("step", step);
   };
 
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
   return (
-    <div className="form-container">
+    <>
       <form action="#" className="form" id="form1">
-        <h2 className="form__title">Step</h2>
         <label htmlFor="Name">Name</label>
-        <input type="text" 
-        placeholder="Name" 
-        className="input" 
-        value={name}
-        onChange={(e) => setFormData({...formData, name: e.target.value})}
+        <input
+          type="text"
+          placeholder="Name"
+          className="input"
+          name="name"
+          value={name}
+          onChange={onChange}
         />
 
         <label htmlFor="SecondName">Second Name</label>
@@ -30,8 +36,9 @@ export default function Step1() {
           type="text"
           placeholder="Second name"
           className="input"
+          name="secondName"
           value={secondName}
-          onChange={(e) => setFormData({...formData, secondName: e.target.value})} 
+          onChange={onChange}
         />
 
         <label htmlFor="Email">Email</label>
@@ -39,8 +46,9 @@ export default function Step1() {
           type="email"
           placeholder="Email"
           className="input"
+          name="email"
           value={email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
 
         <label htmlFor="Telephone">Telephone</label>
@@ -48,12 +56,18 @@ export default function Step1() {
           type="text"
           placeholder="Telephone"
           className="input"
-          value={telephone}
-          onChange={(e) => setFormData({...formData, telephone: e.target.value})}        />
+          value={phoneMask(telephone)}
+          maxLength="16"
+          name="telephone"
+          onChange={(e) =>
+            setFormData({ ...formData, telephone: e.target.value })
+          }
+        />
         <br />
+        <button onClick={nextStep} type="Submit">
+          Próximo
+        </button>
       </form>
-      <button onClick={nextStep}>Next</button>
-      {/* <Buttons /> */}
-    </div>
+    </>
   );
 }
