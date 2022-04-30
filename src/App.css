@@ -4,10 +4,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 1s ease-in-out;
+  /* transition: 1s ease-in-out; */
 }
 
-a{
+a {
   color: #ffffff;
   text-decoration: none;
 }
@@ -19,7 +19,9 @@ label {
 
 body {
   font-family: "Cairo", sans-serif;
-  background: #ffffff;
+  color: white;
+  /* background: linear-gradient(#141e30, #243b55); */
+  background-color: #141e30;
   font-size: 14px;
 }
 
@@ -35,34 +37,178 @@ body {
 }
 
 .sidebar {
+  font-size: 1em;
+  justify-content: space-between;
   float: left;
   width: 15%;
   height: 100%;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.822);
+  transition: 0.7s ease-in-out;
+}
+
+.sidebar button {
+  margin: 110px 0px 80px 0px;
+  border: 2px solid gray;
 }
 
 .closed {
-  width: calc(100% - 95%);
+  background: rgba(0, 0, 0, 0.822);
+  border-radius: 50%;
+  box-shadow: 0 0 4px 5px rgb(0 0 0 / 20%);
+  cursor: pointer;
+  height: 200px;
+  left: -100px;
+  position: absolute;
+  top: -100px;
+  width: 200px;
 }
 
-.form-container {
+.menu-icon {
+  cursor: pointer;
+  color: #ffff;
+  /* background: #ffffff; */
+  cursor: pointer;
+  height: 46px;
+  left: 58%;
+  position: relative;
+  top: 58%;
+  width: 46px;
+}
+
+.close-icon {
+  cursor: pointer;
+  color: #ffff;
+  width: 30px;
+  height: 30px;
+}
+
+/* .form-container {
   flex-direction: column;
   width: 70%;
-  /* justify-content: center; */
+  justify-content: center;
   text-align: center;
-  /* justify-items: center; */
+  justify-items: center;
 }
 
-.form-container form{
-  /* width: 100%;
+.form-container form {
+  width: 100%;
   height: 100%;
-   */
-}
+  
+} */
 
 .page {
   justify-content: start;
   flex-direction: column;
   text-align: center;
   align-items: center;
+}
+
+.form {
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 30px;
+  /* transform: translate(-50%, -50%); */
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.form-container div{
+  position: relative;
+}
+
+.form-container  input{
+  width: 100%;
+  /* padding: 10px 0; */
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.form-container label{
+  /* position: absolute; */
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+/* .form-container input:focus,
+.form-container input:valid{
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: rgb(47, 9, 78);
+} */
+
+.title{
+  margin: 0px 0px 10px 0px;
+}
+
+.progressbar {
+  width: 400px;
+  height: 10px;
+  background: transparent;
+  margin-bottom: -20px;
+  position: relative;
+}
+
+.progressbar div{
+  width: 33.3%;
+  height: 100%;
+  background-color: rgb(98, 0, 255);
+}
+
+.clients-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.card-client{
+  margin: 10px;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  transition: 0.4s;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  cursor: pointer;
+}
+
+.card-client h2{
+  border-bottom: 1px solid #fff;
+}
+
+.false{
+  display: none;
+}
+
+/* .true{
+  display: block;
+} */
+
+@media (max-width: 800px) {
+  .clients-container{
+    grid-template-columns: 1fr;
+  }
 }
