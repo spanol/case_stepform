@@ -1,7 +1,13 @@
-import React from 'react'
-
+import { useClients } from "../../context";
+import ListClients from "../../components/ListClients";
 export default function Clients() {
+  const { clientList } = useClients();
+
+
   return (
-    <div>ClientList</div>
-  )
+    <div className="flex page">
+      ClientList
+      <ListClients clientList={clientList} />
+    </div>
+  );
 }
