@@ -4,7 +4,14 @@ const Context = createContext();
 
 export default function ContextProvider({ children }) {
   const [step, setStep] = useState(1);
-  const [clientList, setClientList] = useState([]);
+  const [clientList, setClientList] = useState(() => {
+    const getStoredClients = localStorage.getItem("Clients");
+    if (getStoredClients) {
+      return JSON.parse(getStoredClients);
+    }
+    return [];
+  });
+  
   const [formData, setFormData] = useState({
     name: "",
     secondName: "",
@@ -15,7 +22,7 @@ export default function ContextProvider({ children }) {
     cpf: "",
     address1: "",
     address2: "",
-    profit: "",
+    profit: "0",
   });
   return (
     <Context.Provider
