@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import Clients from "./pages/Clients";
 import SideBar from "./components/Sidebar";
 import CreateClient from "./pages/CreateClient";
@@ -9,8 +8,7 @@ const Router = () => {
       <div className="container">
       <SideBar />
         <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/create_client" element={<CreateClient />} />
+          <Route path="/" element={<CreateClient />} />
           <Route path="/clients" element={<Clients />} />
         </Routes>
       </div>
