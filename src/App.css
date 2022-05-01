@@ -207,6 +207,14 @@ button {
   display: block;
 } */
 
+.button{
+  display: flex;
+  flex-direction: row;
+  margin: 110px 0px 80px 0px;
+  border: 2px solid gray;
+
+}
+
 @media (max-width: 800px) {
   .clients-container{
     grid-template-columns: 1fr;
