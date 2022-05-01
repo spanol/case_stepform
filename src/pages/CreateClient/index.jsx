@@ -4,10 +4,9 @@ import Step2 from "../../components/Form/Step2";
 import Step3 from "../../components/Form/Step3";
 import Success from "../../components/Form/Success";
 import ProgressBar from "../../components/ProgressBar";
-import { useForm, useStep, useClients } from "../../context/index";
+import {  useStep, useClients } from "../../context/index";
 
 export default function CreateClient() {
-  const { formData } = useForm();
   const { clientList } = useClients();
   const { step } = useStep();
 
@@ -34,7 +33,7 @@ export default function CreateClient() {
     <>
       <div className="flex page">
         <div className="form-container">
-        <h1 className="title">Create Client</h1>
+        <h1 className="title">Criar Cliente</h1>
           <ProgressBar />
           {renderSwitch(step)}
         </div>
