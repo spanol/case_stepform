@@ -1,5 +1,4 @@
 
-<body>
     <div>
         <h1>Case - VentureLabs</h1>
 
@@ -25,5 +24,4 @@
         </ol>
     </code>
     </div>
-</body>
 
