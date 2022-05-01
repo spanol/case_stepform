@@ -114,6 +114,7 @@ ul {
 }
 
 .form-container input {
+  transition: 1s ease;
   width: 100%;
   font-size: 16px;
   color: #fff;
