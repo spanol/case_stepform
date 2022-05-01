@@ -16,18 +16,15 @@ export default function SideBar() {
     <div className="flex sidebar">
       <AiOutlineClose className="close-icon" onClick={toggleActive} />
 
-      <Link to="/" className="button">
-        Cadastrar cliente <AiOutlineUserAdd />
-      </Link>
- 
+      <div>
+        <Link to="/" className="button">
+          Cadastrar cliente <AiOutlineUserAdd className="sidebar-icon" />
+        </Link>
 
-      
-
-      <Link to="/clients" className="button">
-        Clientes <AiOutlineUser />
-      </Link>
-  
-      
+        <Link to="/clients" className="button">
+          Clientes <AiOutlineUser className="sidebar-icon" />
+        </Link>
+      </div>
     </div>
   ) : (
     <div className="sidebar closed" onClick={toggleActive}>
