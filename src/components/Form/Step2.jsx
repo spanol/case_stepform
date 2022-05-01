@@ -1,7 +1,7 @@
 import { useForm, useStep } from "../../context/index";
 import { cepMask } from "../../utils/cepMask";
 import { getCep } from "../../utils/getCep";
-import { toast }  from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function Step2() {
   const { formData, setFormData } = useForm();
@@ -11,7 +11,7 @@ export default function Step2() {
   const nextStep = (e) => {
     e.preventDefault();
     if (!cep || !address1 || !address2)
-    return toast.error("preencha todos os campos");
+      return toast.error("preencha todos os campos");
     setStep((prevState) => prevState + 1);
     toast.success("Perfeito!");
     console.log("step", step);
@@ -26,11 +26,17 @@ export default function Step2() {
   const getCepOnFocus = async () => {
     if (cep.length !== 8) return;
     const response = await getCep(cep);
-    if (response) {
+    if (response.cep) {
+      console.log("response", response);
       setFormData({ ...formData, address1: response.logradouro });
-    } else{
-      alert("CEP não encontrado");
+    } else if (response.erro) {
+      console.log("erro");
+      toast.error("CEP não encontrado");
     }
+  };
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -44,7 +50,8 @@ export default function Step2() {
           className="input"
           maxLength="10"
           value={cepMask(cep)}
-          onChange={(e) => setFormData({ ...formData, cep: e.target.value })}
+          name="cep"
+          onChange={onChange}
         />
 
         <label htmlFor="Address 1">Endereço 1</label>
@@ -54,9 +61,8 @@ export default function Step2() {
           className="input"
           value={address1}
           onFocus={getCepOnFocus}
-          onChange={(e) =>
-            setFormData({ ...formData, address1: e.target.value })
-          }
+          name="address1"
+          onChange={onChange}
         />
 
         <label htmlFor="Address 2">Endereço 2</label>
@@ -65,9 +71,8 @@ export default function Step2() {
           placeholder="Addres 2"
           className="input"
           value={address2}
-          onChange={(e) =>
-            setFormData({ ...formData, address2: e.target.value })
-          }
+          name="address2"
+          onChange={onChange}
         />
         <br />
         <button onClick={prevStep}>Anterior</button>

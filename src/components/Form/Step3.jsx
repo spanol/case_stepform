@@ -34,7 +34,7 @@ export default function Step3() {
       !address2 ||
       !profit
     )
-    return toast.error("preencha todos os campos");
+      return toast.error("preencha todos os campos");
     setStep((prevState) => prevState + 1);
     const newClient = {
       id: new Date().getUTCMilliseconds(),
@@ -71,6 +71,10 @@ export default function Step3() {
     setStep((prevState) => prevState - 1);
   };
 
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
       <form onSubmit={addClient} action="#" className="form" id="form1">
@@ -82,9 +86,8 @@ export default function Step3() {
           className="input"
           value={birthDate}
           maxLength="4"
-          onChange={(e) =>
-            setFormData({ ...formData, birthDate: e.target.value })
-          }
+          name="birthDate"
+          onChange={onChange}
         />
 
         <label htmlFor="Cpf">Cpf</label>
@@ -94,7 +97,8 @@ export default function Step3() {
           className="input"
           maxLength="14"
           value={cpfMask(cpf)}
-          onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
+          name="cpf"
+          onChange={onChange}
         />
 
         <label htmlFor="Profit">Renda mensal</label>
@@ -103,7 +107,8 @@ export default function Step3() {
           placeholder="Profit"
           className="input"
           value={formatReal(getMoney(profit))}
-          onChange={(e) => setFormData({ ...formData, profit: e.target.value })}
+          name="profit"
+          onChange={onChange}
         />
         <br />
         <button type="submit" onClick={prevStep}>
