@@ -1,5 +1,6 @@
 import { useForm, useStep } from "../../context/index";
 import { phoneMask } from "../../utils/phoneMask";
+import { ToastContainer,toast } from 'react-toastify';
 
 export default function Step1() {
   const { step, setStep } = useStep();
@@ -9,8 +10,9 @@ export default function Step1() {
   const nextStep = (e) => {
     e.preventDefault();
     if (!name || !secondName || !email || !telephone)
-      return alert("preencha todos os campos");
+      return toast.error("preencha todos os campos");
     setStep((prevState) => prevState + 1);
+    toast.success("Perfeito!");
     console.log("step", step);
   };
 
@@ -30,7 +32,7 @@ export default function Step1() {
           value={name}
           onChange={onChange}
         />
-
+        
         <label htmlFor="SecondName">Second Name</label>
         <input
           type="text"

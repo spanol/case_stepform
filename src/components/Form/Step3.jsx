@@ -1,6 +1,7 @@
 import { useForm, useClients, useStep } from "../../context/index";
 import { cpfMask } from "../../utils/cpfMask";
 import { getMoney, formatReal } from "../../utils/moneyMasks";
+import { toast } from "react-toastify";
 
 export default function Step3() {
   const { formData, setFormData } = useForm();
@@ -33,7 +34,7 @@ export default function Step3() {
       !address2 ||
       !profit
     )
-      return alert("Preencha todos os campos");
+    return toast.error("preencha todos os campos");
     setStep((prevState) => prevState + 1);
     const newClient = {
       id: new Date().getUTCMilliseconds(),
@@ -49,6 +50,7 @@ export default function Step3() {
       profit: profit,
     };
     setClientList((prevState) => [newClient, ...prevState]);
+    toast.success("Concluido!");
     setFormData({
       ...formData,
       name: "",

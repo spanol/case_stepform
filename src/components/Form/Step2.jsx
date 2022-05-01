@@ -1,6 +1,7 @@
 import { useForm, useStep } from "../../context/index";
 import { cepMask } from "../../utils/cepMask";
 import { getCep } from "../../utils/getCep";
+import { toast }  from "react-toastify";
 
 export default function Step2() {
   const { formData, setFormData } = useForm();
@@ -10,8 +11,9 @@ export default function Step2() {
   const nextStep = (e) => {
     e.preventDefault();
     if (!cep || !address1 || !address2)
-      return alert("Preencha todos os campos");
+    return toast.error("preencha todos os campos");
     setStep((prevState) => prevState + 1);
+    toast.success("Perfeito!");
     console.log("step", step);
   };
 
