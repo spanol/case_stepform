@@ -1,24 +1,17 @@
-import { useState } from "react";
+import { cepMask } from "../../utils/cepMask";
+import { phoneMask } from "../../utils/phoneMask";
 
 export default function ListClients({ clientList }) {
-  const [open, setOpen] = useState("false");
-
-  const toggleOpen = () => {
-    setOpen("true");
-  };
-
-  const handleClick = (e) => {
-    if (e.target.children[0] !== undefined && e.target.value === 0) {
-      const isHidden = e.target.children[0].hidden;
-      e.target.children[0].hidden = !isHidden;
-      console.log("i");
+  const hideClients = (event) => {
+    if (event.target.children[0] !== undefined && event.target.value === 0) {
+      const isHidden = event.target.children[0].hidden;
+      event.target.children[0].hidden = !isHidden;
     }
   };
-
   return (
     <>
       <h1>Lista de clientes</h1>
-      {clientList !== [] ? (
+      {clientList.length !== 0 ? (
         <div className="clients-container">
           {clientList.map(
             ({
@@ -34,22 +27,29 @@ export default function ListClients({ clientList }) {
               address2,
               profit,
             }) => (
-              <div key={id} className="card-client" onClick={handleClick}>
-                <h2 onClick={toggleOpen}>
+              <ul className="card-client">
+                <li key={id} onClick={(event) => hideClients(event)}>
                   Nome: {name} {secondName}
-                </h2>
-
-                <div className={open}>
-                  <p>Email: {email}</p>
-                  <p>Telefone: {telephone}</p>
-                  <p>Cep: {cep}</p>
-                  <p>Data de nascimento: {birthDate}</p>
-                  <p>Cpf: {cpf}</p>
-                  <p>Endereço 1: {address1}</p>
-                  <p>Endereço 2: {address2}</p>
-                  <p>Renda mensal: {profit}</p>
-                </div>
-              </div>
+                  <span hidden={true}>
+                    <div>
+                      <ul>
+                        <li>Email: {email}</li>
+                        <li>Telefone: {phoneMask(telephone)}</li>
+                      </ul>
+                      <ul>
+                        <li>Cep: {cepMask(cep)}</li>
+                        <li>Endereço 1: {address1}</li>
+                        <li>Endereço 2: {address2}</li>
+                      </ul>
+                      <ul>
+                        <li>Data de nascimento: {birthDate}</li>
+                        <li>Cpf: {cpf}</li>
+                        <li>Renda mensal: {profit}</li>
+                      </ul>
+                    </div>
+                  </span>
+                </li>
+              </ul>
             )
           )}
         </div>
