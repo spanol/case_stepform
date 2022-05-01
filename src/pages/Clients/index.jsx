@@ -6,7 +6,6 @@ export default function Clients() {
 
   return (
     <div className="flex page">
-      ClientList
       <ListClients clientList={clientList} />
     </div>
   );
