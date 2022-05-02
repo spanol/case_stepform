@@ -1,17 +1,14 @@
 
-    <div>
         <h1>Case - VentureLabs</h1>
 
         Desafio da VentureLabs que consiste da na criação de um formulário com mutiplas etapas.
 
         Link do deploy: <a
-            href="https://case-stepform-spanol-95vxph4jx-spanol.vercel.app/clients">https://case-stepform-spanol-95vxph4jx-spanol.vercel.app/clients</a>
+            href="case-stepform-spanol.vercel.app   ">case-stepform-spanol.vercel.app</a>
 
         As técnologias utilizadas foram: React, Css e axios.
-    </div>
     <hr>
 
-    <div>
         <h2>Executar</h2>
         <p>Para executarmos o projeto precisamos:</p>
         <code>
@@ -23,5 +20,4 @@
             <li><strong>E com isso nosso projeto já estará rodando no <a href="http://localhost:3000" target="_blank">localhost:3000</a></strong></li>
         </ol>
     </code>
-    </div>
 
